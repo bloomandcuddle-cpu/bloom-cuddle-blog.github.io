@@ -175,14 +175,14 @@
 
 /* ===== MAIN CTA SECTION ===== */
 .home-main-cta {
-    padding: 4rem 20px; /* أضفت padding جانبي */
+    padding: 4rem 0;
     text-align: center;
     background: linear-gradient(135deg, var(--warm-white) 0%, rgba(184, 163, 211, 0.1) 100%);
 }
 
 .home-main-cta h2 {
     font-family: 'Arial', sans-serif;
-    font-size: 2.5rem; /* كبرت العنوان */
+    font-size: 2.2rem;
     font-weight: 700;
     color: var(--charcoal);
     margin-bottom: 1.5rem;
@@ -204,7 +204,7 @@
 }
 
 .home-main-cta-button {
-    background: linear-gradient(135deg, #6b4fa3 0%, #8a6dc7 100%); /* بنفسجي غامق */
+    background: linear-gradient(135deg, #8a6dc7 0%, var(--soft-lilac) 100%);
     color: white;
     padding: 22px 50px;
     border: none;
@@ -213,7 +213,7 @@
     font-weight: 700;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 8px 25px rgba(107, 79, 163, 0.4); /* ظل بلون أغمق */
+    box-shadow: 0 8px 25px rgba(138, 109, 199, 0.4);
     margin-bottom: 1.5rem;
     display: inline-block;
     text-decoration: none;
@@ -221,8 +221,7 @@
 
 .home-main-cta-button:hover {
     transform: translateY(-3px);
-    box-shadow: 0 12px 30px rgba(107, 79, 163, 0.5);
-    background: linear-gradient(135deg, #5a418a 0%, #6b4fa3 100%); /* أغمق عند hover */
+    box-shadow: 0 12px 30px rgba(138, 109, 199, 0.5);
 }
 
 .home-main-cta-note {
@@ -234,7 +233,7 @@
 
 /* ===== ABOUT SECTION ===== */
 .home-about {
-    padding: 3rem 20px; /* أضفت padding جانبي */
+    padding: 3rem 0;
     text-align: center;
 }
 
@@ -275,10 +274,6 @@
     .home-articles-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    
-    .home-main-cta h2 {
-        font-size: 2.2rem; /* تكبير للشاشات المتوسطة */
-    }
 }
 
 @media (max-width: 768px) {
@@ -292,7 +287,7 @@
     }
     
     .home-main-cta h2 {
-        font-size: 2rem; /* تكبير للهاتف */
+        font-size: 1.8rem;
     }
     
     .home-main-cta-button {
@@ -325,6 +320,6 @@
     }
     
     .home-main-cta h2 {
-        font-size: 1.8rem; /* تكبير للهواتف الصغيرة */
+        font-size: 1.6rem;
     }
 }
