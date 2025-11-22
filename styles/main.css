@@ -14,7 +14,7 @@
   --gold-beige: #E6D8B9;
   
   /* Typography */
-  --font-heading: 'Georgia', serif;
+  --font-heading: 'Arial', sans-serif; /* غيرت إلى Arial */
   --font-body: 'Arial', sans-serif;
 }
 
@@ -29,7 +29,7 @@ body {
   font-family: var(--font-body);
   background-color: var(--warm-white);
   color: var(--charcoal);
-  line-height: 1.6;
+  line-height: 1.5; /* خففت من 1.6 */
 }
 
 /* ===== HEADER STYLES ===== */
@@ -49,20 +49,20 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 80px;
+  height: 70px; /* خففت من 80px */
 }
 
 .logo {
   font-family: var(--font-heading);
-  font-size: 1.8rem;
-  font-weight: bold;
+  font-size: 1.6rem; /* خففت من 1.8rem */
+  font-weight: 700; /* أضفت وزن أقوى */
   color: var(--soft-lilac);
 }
 
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 2.5rem;
+  gap: 2rem; /* خففت من 2.5rem */
 }
 
 .nav-links a {
@@ -80,10 +80,10 @@ body {
 .nav-links a::after {
   content: '';
   position: absolute;
-  bottom: -5px;
+  bottom: -3px; /* خففت من -5px */
   left: 0;
   width: 0;
-  height: 2px;
+  height: 1px; /* خففت من 2px */
   background-color: var(--soft-lilac);
   transition: width 0.3s ease;
 }
@@ -97,11 +97,11 @@ body {
   display: none;
   flex-direction: column;
   cursor: pointer;
-  gap: 4px;
+  gap: 3px; /* خففت من 4px */
 }
 
 .hamburger span {
-  width: 25px;
+  width: 22px; /* خففت من 25px */
   height: 2px;
   background-color: var(--charcoal);
   transition: 0.3s;
@@ -110,8 +110,8 @@ body {
 /* ===== FOOTER STYLES ===== */
 .main-footer {
   background-color: var(--mint-green);
-  padding: 3rem 0 1.5rem;
-  margin-top: 4rem;
+  padding: 2.5rem 0 1rem; /* خففت من 3rem 0 1.5rem */
+  margin-top: 3rem; /* خففت من 4rem */
 }
 
 .footer-content {
@@ -119,28 +119,30 @@ body {
   margin: 0 auto;
   padding: 0 20px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* خففت من 280px */
+  gap: 2rem; /* خففت من 2.5rem */
 }
 
 .footer-section h3 {
   font-family: var(--font-heading);
   color: var(--charcoal);
-  font-size: 1.4rem;
-  margin-bottom: 1rem;
+  font-size: 1.3rem; /* خففت من 1.4rem */
+  font-weight: 700; /* أضفت وزن أقوى */
+  margin-bottom: 0.8rem; /* خففت من 1rem */
 }
 
 .footer-section h4 {
   color: var(--charcoal);
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
+  font-size: 1rem; /* خففت من 1.1rem */
   font-weight: 600;
+  margin-bottom: 0.8rem; /* خففت من 1rem */
 }
 
 .footer-section p {
   color: var(--charcoal);
   opacity: 0.9;
-  line-height: 1.6;
+  line-height: 1.5; /* خففت من 1.6 */
+  font-size: 0.95rem; /* خففت قليلاً */
 }
 
 .footer-section ul {
@@ -148,7 +150,7 @@ body {
 }
 
 .footer-section li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem; /* خففت من 0.5rem */
 }
 
 .footer-section a {
@@ -156,6 +158,7 @@ body {
   text-decoration: none;
   transition: color 0.3s ease;
   opacity: 0.9;
+  font-size: 0.95rem; /* خففت قليلاً */
 }
 
 .footer-section a:hover {
@@ -165,8 +168,8 @@ body {
 
 .footer-bottom {
   max-width: 1200px;
-  margin: 2rem auto 0;
-  padding: 1.5rem 20px 0;
+  margin: 1.5rem auto 0; /* خففت من 2rem */
+  padding: 1rem 20px 0; /* خففت من 1.5rem */
   border-top: 1px solid rgba(58, 58, 60, 0.2);
   text-align: center;
 }
@@ -174,22 +177,22 @@ body {
 .footer-bottom p {
   color: var(--charcoal);
   opacity: 0.8;
-  margin-bottom: 0.5rem;
-  font-size: 0.9rem;
+  margin-bottom: 0.4rem; /* خففت من 0.5rem */
+  font-size: 0.85rem; /* خففت من 0.9rem */
 }
 
 /* ===== MAIN CONTENT STYLES ===== */
 main {
   max-width: 1200px;
-  margin: 100px auto 0;
+  margin: 90px auto 0; /* خففت من 100px */
   padding: 0 20px;
-  min-height: calc(100vh - 400px);
+  min-height: calc(100vh - 350px); /* خففت من 400px */
 }
 
 /* Button Styles */
 .btn-primary {
   background-color: var(--soft-lilac);
-  color: var(--charcoal);
+  color: white; /* غيرت من charcoal إلى white */
   padding: 12px 24px;
   border: none;
   border-radius: 6px;
@@ -198,6 +201,7 @@ main {
   transition: all 0.3s ease;
   text-decoration: none;
   display: inline-block;
+  font-size: 1rem;
 }
 
 .btn-primary:hover {
@@ -208,7 +212,7 @@ main {
 .btn-secondary {
   background-color: transparent;
   color: var(--charcoal);
-  padding: 10px 22px;
+  padding: 10px 20px; /* خففت من 22px */
   border: 2px solid var(--mint-green);
   border-radius: 6px;
   font-weight: 600;
@@ -216,6 +220,7 @@ main {
   transition: all 0.3s ease;
   text-decoration: none;
   display: inline-block;
+  font-size: 1rem;
 }
 
 .btn-secondary:hover {
@@ -228,13 +233,13 @@ main {
   background: var(--warm-white);
   border: 1px solid var(--mint-green);
   border-radius: 8px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 10px rgba(184, 163, 211, 0.1);
+  padding: 1.2rem; /* خففت من 1.5rem */
+  box-shadow: 0 2px 8px rgba(184, 163, 211, 0.1); /* خففت من 10px */
 }
 
 /* Section Styles */
 .section {
-  padding: 3rem 0;
+  padding: 2.5rem 0; /* خففت من 3rem */
 }
 
 .section-light {
@@ -250,15 +255,15 @@ main {
   .nav-links {
     position: fixed;
     left: -100%;
-    top: 80px;
+    top: 70px; /* عدلت لتناسب height الجديد */
     flex-direction: column;
     background-color: var(--warm-white);
     width: 100%;
     text-align: center;
     transition: 0.3s;
-    box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
-    padding: 2rem 0;
-    gap: 1.5rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05); /* خففت من 10px 27px */
+    padding: 1.5rem 0; /* خففت من 2rem */
+    gap: 1.2rem; /* خففت من 1.5rem */
   }
   
   .nav-links.active {
@@ -266,7 +271,7 @@ main {
   }
   
   .hamburger.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
+    transform: rotate(45deg) translate(4px, 4px); /* خففت من 5px */
   }
   
   .hamburger.active span:nth-child(2) {
@@ -274,30 +279,34 @@ main {
   }
   
   .hamburger.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -6px);
+    transform: rotate(-45deg) translate(6px, -5px); /* خففت من 7px, -6px */
   }
   
   main {
-    margin-top: 80px;
+    margin-top: 70px; /* خففت من 80px */
   }
   
   .footer-content {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.5rem; /* خففت من 2rem */
   }
 }
 
 @media (max-width: 480px) {
   .navbar {
-    height: 70px;
+    height: 60px; /* خففت من 70px */
   }
   
   .logo {
-    font-size: 1.5rem;
+    font-size: 1.4rem; /* خففت من 1.5rem */
   }
   
   main {
-    margin-top: 70px;
+    margin-top: 60px; /* خففت من 70px */
     padding: 0 15px;
+  }
+  
+  .section {
+    padding: 2rem 0; /* خففت من 2.5rem */
   }
 }
