@@ -6,24 +6,26 @@ document.addEventListener('DOMContentLoaded', function() {
     if (subscribeForm) {
         subscribeForm.addEventListener("submit", function(e) {
             e.preventDefault();
-            const email = document.getElementById("mce-EMAIL").value.trim();
+            const emailInput = document.getElementById("mce-EMAIL");
+            const email = emailInput.value.trim();
             
             // تحقق من صحة الإيميل أولاً
             if (!isValidEmail(email)) {
                 alert("Please enter a valid email address.");
+                emailInput.focus();
                 return;
             }
             
             // إيميلشامب endpoint
             const url = "https://gmail.us2.list-manage.com/subscribe/post-json?u=3fb474bb32938e63a769bb905&id=e02877e9b6";
             
-            // إنشاء callback فريد لكل عملية
+            // إنشاء callback فريد
             const uniqueCallback = 'callback_' + Date.now();
             window[uniqueCallback] = function(response) {
                 if (response.result === "success") {
                     window.location.href = "thank-you.html";
                 } else {
-                    alert("Please enter a valid email.");
+                    alert("Subscription failed. Please try again with a valid email.");
                 }
                 // تنظيف الـ callback بعد الاستخدام
                 delete window[uniqueCallback];
@@ -36,14 +38,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // ===== وظائف صفحة الشكر =====
-    const downloadButtons = document.querySelectorAll('.download-btn');
+    // ===== وظائف صفحة الشكر فقط =====
+    const downloadButtons = document.querySelectorAll('.download-card .download-btn');
     if (downloadButtons.length > 0) {
         downloadButtons.forEach(button => {
             button.addEventListener('click', function(e) {
                 e.preventDefault();
                 alert('Your download will start now!');
-                // هنا يمكنك إضافة روابط التحميل الحقيقية لاحقاً
             });
         });
     }
