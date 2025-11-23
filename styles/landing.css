@@ -4,6 +4,7 @@
     --lilac: #B8A3D3;
     --charcoal: #333333;
     --white: #FFFFFF;
+    --light-gray: #E7E7E7;
 }
 
 * {
@@ -56,11 +57,13 @@ body::before {
     text-align: center;
 }
 
-.confirmation-text {
+.confirmation-text,
+.description {
     font-size: 18px;
     color: rgba(51, 51, 51, 0.8);
     margin-bottom: 32px;
     text-align: center;
+    line-height: 1.6;
 }
 
 .download-section {
@@ -130,6 +133,31 @@ body::before {
 }
 
 /* تنسيقات خاصة بصفحة الهبوط */
+#subscribe-form {
+    width: 100%;
+}
+
+#mce-EMAIL {
+    width: 100%;
+    padding: 16px;
+    border: 1px solid var(--light-gray);
+    border-radius: 12px;
+    font-size: 16px;
+    margin-bottom: 16px;
+    font-family: 'Inter', sans-serif;
+    box-sizing: border-box;
+}
+
+#mce-EMAIL:focus {
+    outline: none;
+    border-color: var(--lilac);
+    box-shadow: 0 0 0 3px rgba(184, 163, 211, 0.1);
+}
+
+.download-btn[type="submit"] {
+    margin-top: 8px;
+}
+
 .note {
     font-size: 12px;
     color: var(--charcoal);
@@ -137,6 +165,7 @@ body::before {
     margin-bottom: 8px;
     font-style: italic;
     opacity: 0.7;
+    text-align: center;
 }
 
 @media (max-width: 768px) {
@@ -148,7 +177,8 @@ body::before {
         font-size: 28px;
     }
     
-    .confirmation-text {
+    .confirmation-text,
+    .description {
         font-size: 16px;
     }
 }
@@ -165,19 +195,4 @@ body::before {
     .download-card {
         padding: 20px;
     }
-}
-.confirmation-text {
-    font-size: 18px;
-    color: rgba(51, 51, 51, 0.8);
-    margin-bottom: 32px;
-    text-align: center;
-    line-height: 1.6;
-}
-
-.description {
-    font-size: 18px;
-    color: rgba(51, 51, 51, 0.8);
-    margin-bottom: 32px;
-    text-align: center;
-    line-height: 1.6;
 }
