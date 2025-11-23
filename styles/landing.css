@@ -1,0 +1,168 @@
+:root {
+    --warm-white: #FAF9F7;
+    --mint: #A8E6CF;
+    --lilac: #B8A3D3;
+    --charcoal: #333333;
+    --white: #FFFFFF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--warm-white);
+    color: var(--charcoal);
+    line-height: 1.6;
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--mint);
+    opacity: 0.05;
+    z-index: -1;
+}
+
+.container {
+    max-width: 650px;
+    width: 100%;
+    background-color: var(--white);
+    border-radius: 20px;
+    padding: 56px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(168, 230, 207, 0.1);
+}
+
+.headline {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    color: var(--charcoal);
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.confirmation-text {
+    font-size: 18px;
+    color: rgba(51, 51, 51, 0.8);
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+.download-section {
+    margin-top: 24px;
+}
+
+.download-card {
+    background-color: var(--white);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 24px;
+    border: 1px solid rgba(184, 163, 211, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s ease;
+}
+
+.download-card:hover {
+    box-shadow: 0 8px 20px rgba(168, 230, 207, 0.15);
+    transform: translateY(-2px);
+}
+
+.download-card h3 {
+    font-size: 18px;
+    margin-bottom: 16px;
+    font-weight: 600;
+}
+
+.download-btn {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    border-radius: 12px;
+    border: none;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    text-decoration: none;
+}
+
+.download-btn.lilac {
+    background-color: var(--lilac);
+    color: var(--charcoal);
+}
+
+.download-btn.lilac:hover {
+    background-color: #a892c7;
+    box-shadow: 0 6px 12px rgba(184, 163, 211, 0.3);
+}
+
+.download-btn.mint {
+    background-color: var(--mint);
+    color: var(--charcoal);
+}
+
+.download-btn.mint:hover {
+    background-color: #97d4bb;
+    box-shadow: 0 6px 12px rgba(168, 230, 207, 0.3);
+}
+
+.reassurance-text {
+    font-size: 12px;
+    color: rgba(51, 51, 51, 0.6);
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* تنسيقات خاصة بصفحة الهبوط */
+.note {
+    font-size: 12px;
+    color: var(--charcoal);
+    margin-top: 8px;
+    margin-bottom: 8px;
+    font-style: italic;
+    opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 40px 28px;
+    }
+    
+    .headline {
+        font-size: 28px;
+    }
+    
+    .confirmation-text {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 32px 20px;
+    }
+    
+    .headline {
+        font-size: 26px;
+    }
+    
+    .download-card {
+        padding: 20px;
+    }
+}
