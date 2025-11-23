@@ -51,13 +51,23 @@
 }
 
 .home-hero-image {
-    background: var(--light-grey);
     border-radius: 12px;
-    height: 350px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--charcoal);
+    height: 400px; /* زدت الارتفاع للصورة */
+    overflow: hidden; /* لمنع تجاوز الصورة للزوايا المدورة */
+    position: relative;
+}
+
+.hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* لملء المساحة بدون تشويه */
+    object-position: center; /* لتركيز على منتصف الصورة */
+    display: block;
+    transition: transform 0.3s ease; /* تأثير سلس عند التمرير */
+}
+
+.hero-img:hover {
+    transform: scale(1.05); /* تكبير بسيط عند التمرير */
 }
 
 /* ===== TRUST SECTION ===== */
@@ -309,7 +319,7 @@
     }
     
     .home-hero-image {
-        height: 280px;
+        height: 350px; /* تعديل للهاتف */
     }
 }
 
@@ -319,7 +329,7 @@
     }
     
     .home-hero-image {
-        height: 220px;
+        height: 250px; /* تعديل للهواتف الصغيرة */
     }
     
     .home-trust-card,
