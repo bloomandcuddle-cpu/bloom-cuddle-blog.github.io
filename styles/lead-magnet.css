@@ -200,3 +200,12 @@ body::before {
         padding: 20px;
     }
 }
+
+.us-note {
+    font-size: 14px;
+    color: var(--text-gray);
+    text-align: center;
+    margin: -20px 0 32px 0;
+    font-style: italic;
+    opacity: 0.8;
+}
