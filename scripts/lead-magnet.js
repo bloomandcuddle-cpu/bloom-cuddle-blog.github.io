@@ -1,3 +1,4 @@
+// كود صفحة الهبوط - نموذج الاشتراك
 document.getElementById("subscribe-form").addEventListener("submit", function(e) {
     e.preventDefault();
 
@@ -19,4 +20,34 @@ document.getElementById("subscribe-form").addEventListener("submit", function(e)
     const script = document.createElement("script");
     script.src = `${url}&EMAIL=${encodeURIComponent(email)}`;
     document.body.appendChild(script);
+});
+
+// كود صفحة الشكر - تحميل الملفات
+document.addEventListener('DOMContentLoaded', function() {
+    // فقط في صفحة الشكر (تحتوي على أزرار التحميل)
+    if (document.querySelector('.download-btn')) {
+        document.querySelectorAll('.download-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // الحصول على رابط التحميل الحقيقي (يمكن استبدال # بالروابط الفعلية)
+                const downloadUrl = this.getAttribute('href');
+                
+                if (downloadUrl && downloadUrl !== '#') {
+                    // بدء التحميل الفعلي
+                    window.location.href = downloadUrl;
+                } else {
+                    // عرض رسالة للمستخدم
+                    alert('Your download will start now!');
+                    
+                    // هنا يمكن إضافة روابط التحميل الفعلية
+                    // مثال:
+                    // const fileName = this.textContent.includes('Gas & Reflux') 
+                    //     ? 'gas-reflux-cheatsheet.pdf' 
+                    //     : 'newborn-checklist.pdf';
+                    // window.location.href = `downloads/${fileName}`;
+                }
+            });
+        });
+    }
 });
