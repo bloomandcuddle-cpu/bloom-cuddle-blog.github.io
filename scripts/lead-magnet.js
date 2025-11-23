@@ -10,7 +10,7 @@ document.getElementById("subscribe-form").addEventListener("submit", function(e)
     // JSONP callback
     window.callback = function(response) {
         if (response.result === "success") {
-            window.location.href = "thankpage.html";
+            window.location.href = "thank-you.html";
         } else {
             alert("Please enter a valid email.");
         }
