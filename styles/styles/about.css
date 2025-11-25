@@ -1,0 +1,102 @@
+/* About Page Specific Styles */
+.about-hero {
+    text-align: center;
+    padding-top: 3rem;
+}
+
+.about-hero img {
+    max-width: 100%;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+}
+
+.about-hero h1 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--charcoal);
+}
+
+.about-hero p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.about-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about-intro p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.cards-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.about-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(184, 163, 211, 0.1);
+}
+
+.about-card h3 {
+    font-family: var(--font-heading);
+    margin-bottom: 0.5rem;
+    color: var(--charcoal);
+}
+
+.content-creation {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.content-creation h2 {
+    font-family: var(--font-heading);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.content-creation ul {
+    list-style: none;
+    padding-left: 0;
+    max-width: 650px;
+    margin: 0 auto;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.about-soft-section {
+    text-align: center;
+    padding-bottom: 3rem;
+}
+
+.about-soft-section img {
+    max-width: 100%;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+}
+
+.about-soft-section h2 {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    color: var(--charcoal);
+}
+
+.about-soft-section p {
+    font-size: 1rem;
+    opacity: 0.9;
+    max-width: 650px;
+    margin: 0.8rem auto 0;
+}
