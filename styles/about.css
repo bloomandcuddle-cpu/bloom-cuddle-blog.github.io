@@ -100,3 +100,23 @@
     max-width: 650px;
     margin: 0.8rem auto 0;
 }
+/* Colors for cards */
+.about-card:nth-child(1) {
+    background: linear-gradient(135deg, #E8F5E8 0%, #A8E6CF 100%);
+    border-left: 4px solid #A8E6CF;
+}
+
+.about-card:nth-child(2) {
+    background: linear-gradient(135deg, #F0E8F5 0%, #B8A3D3 100%);
+    border-left: 4px solid #B8A3D3;
+}
+
+.about-card:nth-child(3) {
+    background: linear-gradient(135deg, #E8F0F5 0%, #87CEEB 100%);
+    border-left: 4px solid #87CEEB;
+}
+
+.about-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
