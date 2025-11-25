@@ -45,7 +45,7 @@
 
             <div class="card">
                 <h3 style="font-family:var(--font-heading); margin-bottom:0.5rem;">Community Stories</h3>
-                <p>We gather what <em>real moms</em> tried — what worked, what didn’t, and what made early motherhood easier.</p>
+                <p>We gather what <em>real moms</em> tried — what worked, what didn't, and what made early motherhood easier.</p>
             </div>
 
             <div class="card">
@@ -73,7 +73,7 @@
         <section class="section section-light" style="text-align:center; padding-bottom:3rem;">
             <img src="assets/mom-baby-soft.jpg" alt="Mom holding baby's hand" style="max-width:100%; border-radius:12px; margin-bottom:1.5rem;" />
             <h2 style="font-family:var(--font-heading); font-size:1.6rem; color:var(--charcoal);">
-                You’re doing amazing, Mama.
+                You're doing amazing, Mama.
             </h2>
             <p style="font-size:1rem; opacity:0.9; max-width:650px; margin:0.8rem auto 0;">
                 We're here to support you gently, honestly, and with zero overwhelm — through every tiny milestone.
@@ -84,16 +84,11 @@
     <!-- ===== FOOTER (Loaded via ComponentLoader) ===== -->
     <div id="footer-container"></div>
 
-    <!-- Hamburger JS (optional if you still use ComponentLoader behavior) -->
-    <script>
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
+    <!-- Main JavaScript -->
+    <script src="scripts/main.js"></script>
 
-        hamburger?.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navLinks.classList.toggle('active');
-        });
-    </script>
+    <!-- About page specific JavaScript -->
+    <script src="scripts/about.js"></script>
 
 </body>
 </html>
