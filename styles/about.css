@@ -120,3 +120,38 @@
     transform: translateY(-5px);
     box-shadow: 0 8px 25px rgba(0,0,0,0.1);
 }
+/* تحسينات إضافية */
+.about-hero {
+    padding: 4rem 2rem 2rem;
+}
+
+.about-intro {
+    padding: 3rem 2rem;
+}
+
+.cards-grid {
+    padding: 2rem;
+}
+
+.content-creation {
+    padding: 3rem 2rem;
+}
+
+.content-creation ul li {
+    margin-bottom: 0.5rem;
+    padding-left: 1rem;
+}
+
+.about-soft-section {
+    padding: 3rem 2rem;
+}
+
+/* تأثيرات انتقالية */
+.about-card {
+    transition: all 0.3s ease;
+}
+
+.about-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
