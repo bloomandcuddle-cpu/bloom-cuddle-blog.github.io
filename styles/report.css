@@ -1,70 +1,205 @@
+/* ===== 1) المساحة العامة ===== */
 .report-main {
-    max-width: 800px;
+    max-width: 700px;
     margin: 0 auto;
-    padding: 100px 20px 40px;
-}
-
-.report-article {
+    padding: 100px 25px 50px;
     line-height: 1.7;
     color: #333;
-    font-size: 1.1rem;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* ===== 2) منطقة الهيرو ===== */
+.report-article {
+    background: #faf8ff; /* لافندر فاتح جداً */
+    padding: 50px 40px;
+    border-radius: 20px;
+    margin-bottom: 40px;
+    text-align: center;
 }
 
 .report-article h1 {
-    font-size: 2.2rem;
-    color: #2c5530;
-    margin-bottom: 1.5rem;
-    text-align: center;
-}
-
-.mid-cta {
-    background: #f8f9fa;
-    padding: 25px;
-    border-radius: 12px;
-    margin: 3rem 0;
-    border: 1px solid #e9ecef;
-    text-align: center;
-}
-
-.mid-cta p {
-    font-size: 1.2rem;
-    color: #555;
-    margin-bottom: 1.2rem;
-}
-
-.mid-cta-button {
-    display: inline-block;
-    background: #48c78e;
-    color: white;
-    padding: 12px 30px;
-    border-radius: 25px;
-    text-decoration: none;
+    font-size: 2.4rem;
+    color: #6d5d8f; /* لافندر/بنفسجي هادئ */
+    margin-bottom: 1rem;
     font-weight: 600;
+    line-height: 1.3;
 }
 
+.report-article .description {
+    font-size: 1.2rem;
+    color: #666;
+    line-height: 1.6;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* ===== 3) تنسيق المحتوى الداخلي ===== */
+.report-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.report-content h2 {
+    color: #6d5d8f; /* لون الهوية - لافندر هادئ */
+    font-size: 1.8rem;
+    margin: 3rem 0 1.5rem;
+    font-weight: 600;
+    border-right: 3px solid #6d5d8f;
+    padding-right: 15px;
+}
+
+.report-content h3 {
+    color: #7a6b9c;
+    font-size: 1.4rem;
+    margin: 2.5rem 0 1.2rem;
+    font-weight: 500;
+}
+
+.report-content p {
+    margin-bottom: 1.8rem;
+    color: #444;
+}
+
+.report-content ul, .report-content ol {
+    margin-bottom: 2rem;
+    padding-right: 1.5rem;
+}
+
+.report-content li {
+    margin-bottom: 0.8rem;
+    color: #444;
+}
+
+.report-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin: 2rem 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+/* مربعات المعلومات */
+.info-box {
+    background: #f8f7ff;
+    border: 1px solid #e8e6ff;
+    border-radius: 12px;
+    padding: 25px;
+    margin: 2rem 0;
+    border-right: 4px solid #6d5d8f;
+}
+
+.info-box h4 {
+    color: #6d5d8f;
+    margin-bottom: 0.8rem;
+    font-size: 1.2rem;
+}
+
+/* ===== 4) CTA الخفيف داخل المحتوى ===== */
+.soft-cta {
+    background: #f5f3ff; /* لافندر باهت */
+    padding: 25px 30px;
+    border-radius: 15px;
+    margin: 3rem 0;
+    text-align: center;
+    border: 1px solid #e8e6ff;
+}
+
+.soft-cta p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.soft-cta-link {
+    color: #6d5d8f;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    border-bottom: 1px dashed #6d5d8f;
+    padding-bottom: 2px;
+    transition: all 0.3s ease;
+}
+
+.soft-cta-link:hover {
+    color: #5a4a7a;
+    border-bottom-style: solid;
+}
+
+/* ===== 5) CTA القوي في النهاية ===== */
 .strong-cta {
-    background: linear-gradient(135deg, #2c5530, #4a7c59);
+    background: linear-gradient(135deg, #6d5d8f, #8a7aac);
     color: white;
     padding: 50px 40px;
     border-radius: 20px;
     text-align: center;
-    margin: 5rem 0 3rem;
+    margin: 4rem 0;
+    box-shadow: 0 8px 30px rgba(109, 93, 143, 0.2);
 }
 
 .strong-cta h2 {
+    color: white;
     font-size: 1.8rem;
     margin-bottom: 1.5rem;
-    color: white;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.strong-cta p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+    line-height: 1.6;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .strong-cta-button {
     display: inline-block;
-    background: #ff6b6b;
+    background: #ff9e7b; /* برتقالي دافئ */
     color: white;
-    padding: 18px 40px;
+    padding: 16px 35px;
     border-radius: 30px;
     text-decoration: none;
-    font-weight: 700;
-    font-size: 1.2rem;
-    margin-bottom: 1.5rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 15px rgba(255, 158, 123, 0.3);
+}
+
+.strong-cta-button:hover {
+    background: #ff8a5c;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 158, 123, 0.4);
+}
+
+.strong-cta small {
+    display: block;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* ===== تحسينات للاستجابة ===== */
+@media (max-width: 768px) {
+    .report-main {
+        padding: 80px 15px 30px;
+    }
+    
+    .report-article {
+        padding: 30px 20px;
+    }
+    
+    .report-article h1 {
+        font-size: 2rem;
+    }
+    
+    .strong-cta {
+        padding: 40px 25px;
+    }
+    
+    .strong-cta h2 {
+        font-size: 1.6rem;
+    }
 }
