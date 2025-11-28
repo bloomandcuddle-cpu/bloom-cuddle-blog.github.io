@@ -1,6 +1,6 @@
 # Best 5 Baby Eczema Products (Mom-Approved & Evidence-Based)
 
-![Baby with eczema](../reports-images/eczema.jpg)
+![Baby with eczema](../images/eczema-baby.jpg)
 
 Hey mama,
 
