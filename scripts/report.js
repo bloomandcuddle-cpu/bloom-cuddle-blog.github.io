@@ -6,7 +6,7 @@ class ReportLoader {
 
     async init() {
         await this.loadReportContent();
-        this.injectSoftCTA(); // ⭐ هذه الدالة تضيف CTA بعد الفقرة الثالثة
+        this.injectSoftCTA();
     }
 
     async loadReportContent() {
@@ -18,25 +18,21 @@ class ReportLoader {
             return;
         }
 
-        // البحث عن التقرير في القائمة (من reports-list.js)
+        // البحث عن التقرير في القائمة
         const report = reports.find(r => r.name === reportName);
         if (!report) {
             console.log('Report not found:', reportName);
             return;
         }
 
-        // تحديث عنوان الصفحة
         document.title = `${report.title} - Bloom & Cuddle`;
 
         try {
-            // تحميل محتوى Markdown
             const response = await fetch(`reports-content/${reportName}.md`);
             if (!response.ok) throw new Error('File not found');
             
             const markdown = await response.text();
-            // تحويل Markdown إلى HTML
             const html = marked.parse(markdown);
-            // عرض المحتوى في الصفحة
             document.getElementById('reportContent').innerHTML = html;
             
         } catch (error) {
@@ -46,7 +42,6 @@ class ReportLoader {
         }
     }
 
-    // ⭐ ⭐ ⭐ هذه الدالة تضيف CTA بعد الفقرة الثالثة ⭐ ⭐ ⭐
     injectSoftCTA() {
         setTimeout(() => {
             const paragraphs = document.querySelectorAll('#reportContent p');
@@ -59,19 +54,17 @@ class ReportLoader {
                         <a href="lead-magnet.html" class="soft-cta-link">Join the Mom List</a>
                     </div>
                 `;
-                // إضافة CTA بعد الفقرة الثالثة مباشرة
                 paragraphs[2].insertAdjacentHTML('afterend', softCTA);
                 console.log('✅ Soft CTA injected after 3rd paragraph');
             } else {
                 console.log('❌ Not enough paragraphs for CTA');
             }
-        }, 800); // وقت أطول لضمان تحميل المحتوى
+        }, 800);
     }
 }
 
-// تشغيل النظام عندما تكون الصفحة جاهزة
+// تشغيل النظام
 document.addEventListener('DOMContentLoaded', () => {
-    // ننتظر قليلاً لضمان تحميل الهيدر والفوتر أولاً
     setTimeout(() => {
         new ReportLoader();
     }, 300);
