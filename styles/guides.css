@@ -1,6 +1,6 @@
 /* إضافات لصفحة Guides */
 .guides-main {
-    padding: 100px 20px 40px 20px;
+    padding: 120px 20px 40px 20px;
     text-align: center;
     max-width: 1200px;
     margin: 0 auto;
@@ -36,7 +36,7 @@
 
 .cta-button {
     display: inline-block;
-    background: #48c78e; /* أخضر نعناعي */
+    background: #48c78e !important; /* أخضر نعناعي */
     color: white;
     padding: 12px 30px;
     border-radius: 25px;
@@ -48,11 +48,6 @@
 }
 
 .cta-button:hover {
-    background: #3db583; /* أخضر نعناعي غامق */
+    background: #3db583 !important; /* أخضر نعناعي غامق */
     transform: translateY(-2px);
-}
-
-/* تغيير لون القلب في النص */
-.cta-text::after {
-    content: " 💚"; /* قلب أخضر */
 }
