@@ -203,3 +203,97 @@
         font-size: 1.6rem;
     }
 }
+/* ===== إصلاح كامل لمحتوى التقرير ===== */
+.report-main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 100px 20px 40px;
+    text-align: right; /* للنص العربي */
+}
+
+.report-article {
+    line-height: 1.8;
+    color: #333;
+    text-align: right; /* محاذاة للنص */
+}
+
+.report-article h1 {
+    font-size: 2.2rem;
+    color: #2c5530;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 700;
+}
+
+.report-article h2 {
+    font-size: 1.6rem;
+    color: #4a7c59;
+    margin: 3rem 0 1.5rem;
+    font-weight: 600;
+    border-right: 4px solid #48c78e;
+    padding-right: 15px;
+}
+
+.report-article h3 {
+    font-size: 1.3rem;
+    color: #5e8c61;
+    margin: 2.5rem 0 1.2rem;
+    font-weight: 500;
+}
+
+.report-article p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    text-align: right;
+}
+
+.report-article ul, .report-article ol {
+    margin-bottom: 2rem;
+    padding-right: 2rem;
+    text-align: right;
+}
+
+.report-article li {
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.report-article img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin: 2rem auto;
+    display: block;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.report-article strong {
+    color: #2c5530;
+    font-weight: 600;
+}
+
+/* إصلاح CTA الخفيف */
+.soft-cta {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 12px;
+    margin: 3rem 0;
+    border: 1px solid #e9ecef;
+    text-align: center;
+}
+
+.soft-cta p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+.soft-cta-link {
+    color: #48c78e;
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 2px solid #48c78e;
+    padding-bottom: 2px;
+}
