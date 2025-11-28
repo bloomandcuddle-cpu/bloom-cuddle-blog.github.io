@@ -108,3 +108,27 @@
 .report-card .cta-button:hover {
     background: #3db583;
 }
+/* إصلاح عرض البطاقات - أضيفي هذا */
+.reports-grid {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
+}
+
+.report-card {
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.report-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* تأكيد أن التنسيقات تطبق */
+.report-card * {
+    box-sizing: border-box;
+}
