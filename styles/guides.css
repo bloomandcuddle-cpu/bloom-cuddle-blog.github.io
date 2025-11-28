@@ -1,67 +1,18 @@
 /* إضافات لصفحة Guides */
 .guides-main {
-    padding: 40px 20px;
+    padding: 100px 20px 40px 20px;
     text-align: center;
     max-width: 1200px;
     margin: 0 auto;
 }
 
 .guides-title {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     color: #333;
     margin-bottom: 40px;
     font-weight: 600;
     line-height: 1.4;
-}
-
-.guides-content {
-    min-height: 300px;
-    margin: 50px 0;
-}
-
-.cta-section {
-    background: #f8f9fa;
-    padding: 30px;
-    border-radius: 12px;
-    margin-top: 60px;
-    border: 1px solid #e9ecef;
-}
-
-.cta-text {
-    font-size: 1.2rem;
-    color: #555;
-    margin-bottom: 20px;
-}
-
-.cta-button {
-    display: inline-block;
-    background: #e91e63;
-    color: white;
-    padding: 12px 30px;
-    border-radius: 25px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: background 0.3s ease;
-}
-
-.cta-button:hover {
-    background: #c2185b;
-}
-/* إصلاح المسافات */
-.guides-main {
-    padding: 100px 20px 40px 20px; /* مسافة من الأعلى للهيدر */
-    text-align: center;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.guides-title {
-    font-size: 1.5rem; /* أصغر من السابق */
-    color: #333;
-    margin-bottom: 40px;
-    font-weight: 600;
-    line-height: 1.4;
-    margin-top: 0; /* إزالة أي مسافة علوية */
+    margin-top: 0;
 }
 
 .guides-content {
@@ -85,7 +36,7 @@
 
 .cta-button {
     display: inline-block;
-    background: #e91e63;
+    background: #48c78e; /* أخضر نعناعي */
     color: white;
     padding: 12px 30px;
     border-radius: 25px;
@@ -97,6 +48,11 @@
 }
 
 .cta-button:hover {
-    background: #c2185b;
+    background: #3db583; /* أخضر نعناعي غامق */
     transform: translateY(-2px);
+}
+
+/* تغيير لون القلب في النص */
+.cta-text::after {
+    content: " 💚"; /* قلب أخضر */
 }
