@@ -60,7 +60,6 @@ class ReportLoader {
             
             // إدراج الـ CTA بعد نهاية الفقرة مباشرة
             paragraphs[safeIndex].insertAdjacentHTML('afterend', softCTA);
-            console.log('✅ Soft CTA injected after paragraph:', safeIndex + 1);
         }
     }
 }
