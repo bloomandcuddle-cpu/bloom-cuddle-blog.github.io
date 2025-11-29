@@ -54,7 +54,7 @@ class ReportLoader {
             const softCTA = `
                 <div class="soft-cta">
                     <p>Get future newborn guides delivered to your inbox</p>
-                    <a href="lead-magnet.html" class="soft-cta-link">Join the Mom List</a>
+                    <a href="lead-magnet.html" class="soft-cta-button">Join the Mom List</a>
                 </div>
             `;
             
