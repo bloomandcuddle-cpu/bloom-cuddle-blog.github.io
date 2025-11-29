@@ -123,33 +123,39 @@
     color: #665c34;
 }
 
-/* ==================  CTA الخفيف ================== */
+/* ==================  CTA الخفيف المحسن ================== */
 .soft-cta {
     text-align: center;
-    margin: 3rem 0;
+    margin: 2rem 0;
+    padding: 1.2rem;
+    background: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #f0f0f0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
 .soft-cta p {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: #444;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
 }
 
 .soft-cta-button {
     display: inline-block;
     background: #9a88c6;
     color: white;
-    padding: 0.8rem 1.8rem;
-    border-radius: 30px;
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px;
     text-decoration: none;
     font-weight: 600;
-    font-size: 1rem;
-    transition: 0.3s ease;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
 }
 
 .soft-cta-button:hover {
     background: #7c6aa7;
-    transform: translateY(-2px);
+    transform: translateY(-1px);
 }
 
 /* ==================  CTA القوي ================== */
@@ -259,7 +265,6 @@
 
 /* ==================  موبايل ================== */
 @media (max-width: 768px) {
-
     .report-main {
         padding: 80px 15px 35px;
     }
@@ -272,8 +277,22 @@
         font-size: 1.5rem;
     }
 
+    .soft-cta {
+        margin: 1.5rem 0;
+        padding: 1rem;
+    }
+    
+    .soft-cta p {
+        font-size: 0.95rem;
+        margin-bottom: 0.4rem;
+    }
+    
+    .soft-cta-button {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
+
     .next-reads-list {
         grid-template-columns: 1fr;
     }
 }
-
