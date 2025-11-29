@@ -42,17 +42,25 @@ class ReportLoader {
     }
 
     injectSoftCTA() {
-        // حقن الـ CTA مباشرة بعد تحميل المحتوى
         const paragraphs = document.querySelectorAll('#reportContent p');
         
-        if (paragraphs.length >= 3) {
+        if (paragraphs.length > 0) {
+            // حساب 40% من عدد الفقرات
+            const targetIndex = Math.floor(paragraphs.length * 0.4);
+            
+            // التأكد من أن الفهرس ضمن النطاق
+            const safeIndex = Math.max(0, Math.min(targetIndex, paragraphs.length - 1));
+            
             const softCTA = `
                 <div class="soft-cta">
                     <p>Get future newborn guides delivered to your inbox</p>
                     <a href="lead-magnet.html" class="soft-cta-link">Join the Mom List</a>
                 </div>
             `;
-            paragraphs[2].insertAdjacentHTML('afterend', softCTA);
+            
+            // إدراج الـ CTA بعد نهاية الفقرة مباشرة
+            paragraphs[safeIndex].insertAdjacentHTML('afterend', softCTA);
+            console.log('✅ Soft CTA injected after paragraph:', safeIndex + 1);
         }
     }
 }
