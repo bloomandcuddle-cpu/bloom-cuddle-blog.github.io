@@ -5,7 +5,10 @@ class ReportLoader {
 
     async init() {
         await this.loadReportContent();
-        this.injectSoftCTA();
+        // ⬇️ نزيد الوقت لضمان اكتمال معالجة Markdown
+        setTimeout(() => {
+            this.injectSoftCTA();
+        }, 500);
     }
 
     async loadReportContent() {
@@ -17,7 +20,6 @@ class ReportLoader {
             return;
         }
 
-        // البحث عن التقرير في القائمة
         const report = reports.find(r => r.name === reportName);
         if (!report) {
             console.log('Report not found:', reportName);
@@ -43,24 +45,29 @@ class ReportLoader {
 
     injectSoftCTA() {
         const paragraphs = document.querySelectorAll('#reportContent p');
+        console.log('🔍 عدد الفقرات الفعلي:', paragraphs.length);
         
         if (paragraphs.length > 0) {
             // حساب 40% من عدد الفقرات
             const targetIndex = Math.floor(paragraphs.length * 0.4);
+            console.log('🎯 الفهرس المستهدف:', targetIndex);
             
-            // التأكد من أن الفهرس ضمن النطاق
             const safeIndex = Math.max(0, Math.min(targetIndex, paragraphs.length - 1));
             
             const softCTA = `
-                <div class="soft-cta">
-                    <p>Get future newborn guides delivered to your inbox</p>
+                <div class="soft-cta" style="border: 3px solid red; background: yellow; padding: 20px;">
+                    <p>🎯 <strong>هذا CTA بعد 40% من المحتوى!</strong></p>
+                    <p>تم إدراجه بعد الفقرة رقم ${safeIndex + 1} من ${paragraphs.length}</p>
                     <a href="lead-magnet.html" class="soft-cta-link">Join the Mom List</a>
                 </div>
             `;
             
-            // إدراج الـ CTA بعد نهاية الفقرة مباشرة
             paragraphs[safeIndex].insertAdjacentHTML('afterend', softCTA);
-            console.log('✅ Soft CTA injected after paragraph:', safeIndex + 1);
+            console.log('✅ تم إضافة CTA بعد الفقرة:', safeIndex + 1);
+        } else {
+            console.log('❌ لم يتم العثور على فقرات - إعادة المحاولة...');
+            // إعادة المحاولة بعد وقت إضافي
+            setTimeout(() => this.injectSoftCTA(), 300);
         }
     }
 }
