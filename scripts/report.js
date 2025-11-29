@@ -1,4 +1,3 @@
-// scripts/report.js - النسخة النهائية الصحيحة
 class ReportLoader {
     constructor() {
         this.init();
@@ -43,29 +42,22 @@ class ReportLoader {
     }
 
     injectSoftCTA() {
-        setTimeout(() => {
-            const paragraphs = document.querySelectorAll('#reportContent p');
-            console.log('Found paragraphs:', paragraphs.length);
-            
-            if (paragraphs.length >= 3) {
-                const softCTA = `
-                    <div class="soft-cta">
-                        <p>Get future newborn guides delivered to your inbox</p>
-                        <a href="lead-magnet.html" class="soft-cta-link">Join the Mom List</a>
-                    </div>
-                `;
-                paragraphs[2].insertAdjacentHTML('afterend', softCTA);
-                console.log('✅ Soft CTA injected after 3rd paragraph');
-            } else {
-                console.log('❌ Not enough paragraphs for CTA');
-            }
-        }, 800);
+        // حقن الـ CTA مباشرة بعد تحميل المحتوى
+        const paragraphs = document.querySelectorAll('#reportContent p');
+        
+        if (paragraphs.length >= 3) {
+            const softCTA = `
+                <div class="soft-cta">
+                    <p>Get future newborn guides delivered to your inbox</p>
+                    <a href="lead-magnet.html" class="soft-cta-link">Join the Mom List</a>
+                </div>
+            `;
+            paragraphs[2].insertAdjacentHTML('afterend', softCTA);
+        }
     }
 }
 
 // تشغيل النظام
 document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => {
-        new ReportLoader();
-    }, 300);
+    new ReportLoader();
 });
