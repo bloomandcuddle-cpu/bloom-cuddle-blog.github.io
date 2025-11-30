@@ -6,6 +6,7 @@ const reports = [
     cover: "images/eczema-baby.jpg",
     description: "Simple steps to identify eczema, care for flare-ups, and choose the right products."
   },
+  
   {
     name: "anti-colic-bottles",                 
     title: "Top 5 Anti-Colic Bottles", 
