@@ -140,20 +140,19 @@
 /* ===== REPORTS SECTION ===== */
 .home-reports {
     padding: 80px 20px;
-    background: #f9faf9;
+    background: #8a7aac; /* ⬅️ تغيير إلى بنفسجي */
 }
 
-/* ⬇⬇⬇ التصحيح: كلاسات عامة ⬇⬇⬇ */
 .section-title {
     text-align: center;
     font-size: 2.2rem;
-    color: #2c5530;
+    color: white; /* ⬅️ تغيير إلى أبيض */
     margin-bottom: 10px;
 }
 
 .section-subtitle {
     text-align: center;
-    color: #666;
+    color: rgba(255, 255, 255, 0.9); /* ⬅️ أبيض شفاف */
     margin-bottom: 50px;
     font-size: 1.1rem;
 }
