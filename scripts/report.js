@@ -73,8 +73,12 @@ class ReportLoader {
         const backToTopButton = document.createElement('button');
         backToTopButton.id = 'backToTop';
         backToTopButton.className = 'back-to-top';
-        backToTopButton.innerHTML = '↑ العودة للأعلى';
-        backToTopButton.setAttribute('aria-label', 'العودة للأعلى');
+        
+        // ⬇⬇⬇ تم التعديل هنا: نص إنجليزي ⬇⬇⬇
+        backToTopButton.innerHTML = '↑ Back to Top';
+        backToTopButton.setAttribute('aria-label', 'Back to top');
+        // ⬆⬆⬆ تم التعديل هنا ⬆⬆⬆
+        
         backToTopButton.style.display = 'none';
         backToTopButton.style.opacity = '0';
         backToTopButton.style.transform = 'translateY(10px)';
