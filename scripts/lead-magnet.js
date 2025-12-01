@@ -22,7 +22,7 @@ document.getElementById("subscribe-form").addEventListener("submit", function(e)
     document.body.appendChild(script);
 });
 
-// كود صفحة الشكر - تحميل الملفات
+// كود صفحة الشكر -  تحميل الملفات
 document.addEventListener('DOMContentLoaded', function() {
     // فقط في صفحة الشكر (تحتوي على أزرار التحميل)
     if (document.querySelector('.download-btn')) {
