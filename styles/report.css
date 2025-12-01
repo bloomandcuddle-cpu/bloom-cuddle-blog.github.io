@@ -3,15 +3,15 @@
     max-width: 800px;
     margin: 0 auto;
     padding: 100px 20px 40px;
-    text-align: right;
-    direction: rtl;
+    text-align: left;   /* ← اجعل النص على اليسار */
+    direction: ltr;     /* ← اجعل اتجاه النص من اليسار لليمين */
 }
 
 .report-article {
     line-height: 1.9;
     color: #333;
-    text-align: right;
-    direction: rtl;
+    text-align: left;   /* ← اجعل النص على اليسار */
+    direction: ltr;     /* ← اجعل اتجاه النص من اليسار لليمين */
     font-size: 1.1rem;
 }
 
@@ -66,19 +66,20 @@ article, .post-content {
 .report-article ul,
 .report-article ol {
     margin-bottom: 2.8rem;
-    padding-right: 2.2rem;
+    padding-left: 2.2rem;   /* ← اجعل القوائم من اليسار */
 }
 
 .report-article ul li {
     list-style: none;
     position: relative;
-    padding-right: 1.6rem;
+    padding-left: 1.6rem;   /* ← العلامة على يسار النص */
 }
 
 .report-article ul li::before {
     content: "✔";
     position: absolute;
-    right: 0;
+    left: 0;                /* ← اجعل العلامة على اليسار */
+    right: auto;
     top: 3px;
     font-size: 1rem;
     color: #48c78e;
@@ -87,6 +88,7 @@ article, .post-content {
 
 .report-article ol li {
     margin-bottom: 1.2rem;
+    list-style-position: inside; /* ← أرقام القوائم على يسار السطر */
 }
 
 /* ==================  صور ================== */
