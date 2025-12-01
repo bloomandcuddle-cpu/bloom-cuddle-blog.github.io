@@ -15,6 +15,12 @@
     font-size: 1.1rem;
 }
 
+/* إضافة جديدة: اجعل article و .post-content من اليسار لليمين */
+article, .post-content {
+    direction: ltr;       /* اجعل اتجاه النص من اليسار لليمين */
+    text-align: left;     /* اجعل محاذاة النص لليسار */
+}
+
 /* ==================  العناوين ================== */
 .report-article h1 {
     font-size: 2.3rem;
