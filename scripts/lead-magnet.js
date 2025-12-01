@@ -33,10 +33,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 let customFileName;
                 
                 if (this.textContent.includes('Gas & Reflux')) {
-                    fileName = 'downloads/gas-reflux-cheatsheet.zip';
+                    fileName = 'https://github.com/bloomandcuddle-cpu/bloom-cuddle-blog.github.io/raw/refs/heads/main/downloads/gas-reflux-cheatsheet.zip';
                     customFileName = 'Gas_and_Reflux_Calming_Guide.zip';
                 } else if (this.textContent.includes('Newborn')) {
-                    fileName = 'downloads/newborn-checklist.zip';
+                    fileName = 'https://github.com/bloomandcuddle-cpu/bloom-cuddle-blog.github.io/raw/refs/heads/main/downloads/newborn-checklist.zip';
                     customFileName = 'Newborn_Essentials_Checklist.zip';
                 } else {
                     fileName = '';
@@ -164,7 +164,7 @@ function showDownloadMessage(fileName) {
             <span style="font-size:24px;">📥</span>
             <div>
                 <strong style="display:block;margin-bottom:4px;">Downloading...</strong>
-                <span style="font-size:14px;opacity:0.9;">${fileName.replace('.zip', '')}</span>
+                <span style="font-size:14px;opacity:0.9;">${fileName.split('/').pop().replace('.zip', '')}</span>
             </div>
         </div>
     `;
