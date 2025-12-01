@@ -1,4 +1,4 @@
-// كود صفحة الهبوط - نموذج الاشتراك
+// كود صفحة الهبوط - نموذج  الاشتراك
 document.getElementById("subscribe-form").addEventListener("submit", function(e) {
     e.preventDefault();
 
