@@ -1,5 +1,5 @@
 /* ===== إصلاح توسيع الأقسام بعد تعديل main.css ===== */
-.home-articles,
+.home-reports,
 .home-main-cta {
     margin-left: -20px;
     margin-right: -20px;
@@ -44,16 +44,16 @@
     cursor: pointer;
     transition: all 0.3s ease;
     margin-bottom: 1rem;
-    text-decoration: none; /* ⬅️ جديد للروابط */
-    display: inline-block; /* ⬅️ جديد للروابط */
-    text-align: center; /* ⬅️ جديد للروابط */
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
 }
 
 .home-hero-button:hover {
     background-color: #a992c7;
     transform: translateY(-2px);
-    text-decoration: none; /* ⬅️ جديد للروابط */
-    color: white; /* ⬅️ جديد للروابط */
+    text-decoration: none;
+    color: white;
 }
 
 .home-hero-image {
@@ -137,64 +137,95 @@
     opacity: 0.9;
 }
 
-/* ===== ARTICLES SECTION ===== */
-.home-articles {
-    padding: 2.5rem 20px;
-    background: var(--soft-lilac);
+/* ===== REPORTS SECTION ===== */
+.home-reports {
+    padding: 80px 20px;
+    background: #f9faf9;
 }
 
-.home-articles h2 {
+/* ⬇⬇⬇ التصحيح: كلاسات عامة ⬇⬇⬇ */
+.section-title {
     text-align: center;
-    color: white;
-    font-family: 'Arial', sans-serif;
-    font-size: 1.6rem;
-    font-weight: 700;
-    margin-bottom: 2rem;
+    font-size: 2.2rem;
+    color: #2c5530;
+    margin-bottom: 10px;
 }
 
-.home-articles-grid {
+.section-subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 50px;
+    font-size: 1.1rem;
+}
+
+.reports-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-.home-article-card {
+.report-card {
     background: white;
-    border-radius: 8px;
+    border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    display: block;
 }
 
-.home-article-image {
-    background: var(--light-grey);
-    height: 140px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--charcoal);
-    font-size: 0.9rem;
+.report-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.12);
 }
 
-.home-article-content {
-    padding: 1rem;
+.report-image {
+    height: 200px;
+    overflow: hidden;
 }
 
-.home-article-title {
-    font-family: 'Arial', sans-serif;
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--charcoal);
-    margin-bottom: 0.5rem;
+.report-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.report-card:hover .report-image img {
+    transform: scale(1.05);
+}
+
+.report-content {
+    padding: 25px;
+}
+
+.report-title {
+    font-size: 1.4rem;
+    color: #2c5530;
+    margin-bottom: 12px;
     line-height: 1.3;
 }
 
-.home-article-description {
-    color: var(--charcoal);
-    opacity: 0.8;
-    line-height: 1.4;
-    font-size: 0.85rem;
+.report-description {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
+
+.read-link {
+    color: #8a7aac;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.report-card:hover .read-link {
+    transform: translateX(5px);
 }
 
 /* ===== MAIN CTA SECTION ===== */
@@ -227,7 +258,7 @@
     opacity: 0.9;
 }
 
-/* زر الـ CTA الرئيسي - يدعم الآن <button> و <a> */
+/* زر الـ CTA الرئيسي */
 .home-main-cta-button {
     background: linear-gradient(135deg, #6b4fa3 0%, #8a6dc7 100%);
     color: white;
@@ -241,16 +272,16 @@
     box-shadow: 0 8px 25px rgba(107, 79, 163, 0.4);
     margin-bottom: 1.5rem;
     display: inline-block;
-    text-decoration: none; /* ⬅️ موجود بالفعل */
-    text-align: center; /* ⬅️ جديد */
+    text-decoration: none;
+    text-align: center;
 }
 
 .home-main-cta-button:hover {
     transform: translateY(-3px);
     box-shadow: 0 12px 30px rgba(107, 79, 163, 0.5);
     background: linear-gradient(135deg, #5a418a 0%, #6b4fa3 100%);
-    text-decoration: none; /* ⬅️ جديد */
-    color: white; /* ⬅️ جديد */
+    text-decoration: none;
+    color: white;
 }
 
 .home-main-cta-note {
@@ -299,13 +330,16 @@
         font-size: 2.2rem;
     }
     
-    .home-trust-grid,
-    .home-articles-grid {
+    .home-trust-grid {
         grid-template-columns: repeat(2, 1fr);
     }
     
     .home-main-cta h2 {
         font-size: 2.2rem;
+    }
+    
+    .reports-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -314,8 +348,7 @@
         font-size: 1.8rem;
     }
     
-    .home-trust-grid,
-    .home-articles-grid {
+    .home-trust-grid {
         grid-template-columns: 1fr;
     }
     
@@ -331,6 +364,19 @@
     .home-hero-image {
         height: 350px;
     }
+    
+    .reports-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .report-image {
+        height: 180px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -342,8 +388,7 @@
         height: 250px;
     }
     
-    .home-trust-card,
-    .home-article-card {
+    .home-trust-card {
         padding: 1.2rem;
     }
     
@@ -357,10 +402,18 @@
     }
     
     /* إصلاح التوسيع للهاتف */
-    .home-articles,
+    .home-reports,
     .home-main-cta {
         margin-left: -15px;
         margin-right: -15px;
         width: calc(100% + 30px);
+    }
+    
+    .report-content {
+        padding: 20px;
+    }
+    
+    .report-title {
+        font-size: 1.2rem;
     }
 }
