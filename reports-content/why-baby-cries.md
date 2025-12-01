@@ -1,7 +1,7 @@
 # Affiliate Disclosure 💜
 This article contains affiliate links. If you choose to purchase through these links, I may earn a small commission at no extra cost to you — the price stays exactly the same. Your support helps me continue creating free, helpful content for moms. Thank you! 💕
 
-# 7 Uncommon Reasons Your Baby Cries (And How to Help)
+# 7 Uncommon Reasons Your Baby Cries  (And How to Help)
 
 I remember when I had my first baby — and as many of you know, the first little one is like a whole experiment for every mom. My baby would cry so intensely, and I just couldn’t figure out why. Everything seemed normal… no signs of a tummy ache, the diaper was clean, she wasn’t hungry. I even thought maybe it was something deeper.
 
