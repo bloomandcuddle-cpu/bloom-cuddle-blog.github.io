@@ -56,7 +56,10 @@ document.addEventListener('DOMContentLoaded', function() {
 // ⭐⭐⭐ التعديلات هنا (الدالة الجديدة فقط) ⭐⭐⭐
 function forceDownload(filePath, customName) {
     fetch(filePath)
-        .then(response => response.blob())
+        .then(response => {
+            if (!response.ok) throw new Error('Network response was not ok');
+            return response.blob();
+        })
         .then(blob => {
             const blobUrl = window.URL.createObjectURL(blob);
 
@@ -64,7 +67,6 @@ function forceDownload(filePath, customName) {
             const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
             if (isIOS) {
-                // iOS لا يدعم download — تحويل blob إلى Base64
                 const reader = new FileReader();
                 reader.onload = function() {
                     const link = document.createElement('a');
@@ -164,7 +166,7 @@ function showDownloadMessage(fileName) {
             <span style="font-size:24px;">📥</span>
             <div>
                 <strong style="display:block;margin-bottom:4px;">Downloading...</strong>
-                <span style="font-size:14px;opacity:0.9;">${fileName.split('/').pop().replace('.zip', '')}</span>
+                <span style="font-size:14px;opacity:0.9;">${customNameFromPath(fileName)}</span>
             </div>
         </div>
     `;
@@ -218,6 +220,11 @@ function showDownloadMessage(fileName) {
             setTimeout(() => notification.remove(), 300);
         }
     }, 4000);
+}
+
+// استخراج اسم الملف بدون المسار والامتداد
+function customNameFromPath(path) {
+    return path.split('/').pop().replace('.zip', '');
 }
 
 // تحميل الزر
