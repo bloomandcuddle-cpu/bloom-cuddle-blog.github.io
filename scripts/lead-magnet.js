@@ -24,223 +24,30 @@ document.getElementById("subscribe-form").addEventListener("submit", function(e)
 
 // كود صفحة الشكر - تحميل الملفات
 document.addEventListener('DOMContentLoaded', function() {
+    // فقط في صفحة الشكر (تحتوي على أزرار التحميل)
     if (document.querySelector('.download-btn')) {
         document.querySelectorAll('.download-btn').forEach(button => {
             button.addEventListener('click', function(e) {
                 e.preventDefault();
                 
-                let fileName;
-                let customFileName;
+                // الحصول على رابط التحميل الحقيقي (يمكن استبدال # بالروابط الفعلية)
+                const downloadUrl = this.getAttribute('href');
                 
-                if (this.textContent.includes('Gas & Reflux')) {
-                    fileName = 'https://github.com/bloomandcuddle-cpu/bloom-cuddle-blog.github.io/raw/refs/heads/main/downloads/gas-reflux-cheatsheet.zip';
-                    customFileName = 'Gas_and_Reflux_Calming_Guide.zip';
-                } else if (this.textContent.includes('Newborn')) {
-                    fileName = 'https://github.com/bloomandcuddle-cpu/bloom-cuddle-blog.github.io/raw/refs/heads/main/downloads/newborn-checklist.zip';
-                    customFileName = 'Newborn_Essentials_Checklist.zip';
+                if (downloadUrl && downloadUrl !== '#') {
+                    // بدء التحميل الفعلي
+                    window.location.href = downloadUrl;
                 } else {
-                    fileName = '';
-                    customFileName = '';
-                }
-                
-                if (fileName) {
-                    forceDownload(fileName, customFileName);
-                    trackDownload(customFileName);
-                    showDownloadMessage(customFileName);
+                    // عرض رسالة للمستخدم
+                    alert('Your download will start now!');
+                    
+                    // هنا يمكن إضافة روابط التحميل الفعلية
+                    // مثال:
+                    // const fileName = this.textContent.includes('Gas & Reflux') 
+                    //     ? 'gas-reflux-cheatsheet.pdf' 
+                    //     : 'newborn-checklist.pdf';
+                    // window.location.href = `downloads/${fileName}`;
                 }
             });
         });
-    }
-});
-
-// ⭐⭐⭐ التعديلات هنا (الدالة الجديدة فقط) ⭐⭐⭐
-function forceDownload(filePath, customName) {
-    fetch(filePath)
-        .then(response => {
-            if (!response.ok) throw new Error('Network response was not ok');
-            return response.blob();
-        })
-        .then(blob => {
-            const blobUrl = window.URL.createObjectURL(blob);
-
-            // كشف أجهزة iPhone / iPad
-            const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-            if (isIOS) {
-                const reader = new FileReader();
-                reader.onload = function() {
-                    const link = document.createElement('a');
-                    link.href = reader.result;
-                    link.download = customName;
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                };
-                reader.readAsDataURL(blob);
-                return;
-            }
-
-            // باقي الأجهزة (Android + Desktop)
-            const link = document.createElement('a');
-            link.href = blobUrl;
-            link.download = customName;
-            link.style.display = 'none';
-
-            document.body.appendChild(link);
-            link.click();
-
-            setTimeout(() => {
-                window.URL.revokeObjectURL(blobUrl);
-                document.body.removeChild(link);
-            }, 100);
-        })
-        .catch(error => {
-            console.error('Download error:', error);
-            fallbackDownload(filePath, customName);
-        });
-}
-
-// fallback — فقط إزالة فتح نافذة جديدة
-function fallbackDownload(filePath, customName) {
-    const timestamp = new Date().getTime();
-    const link = document.createElement('a');
-
-    link.href = `${filePath}?t=${timestamp}`;
-    link.download = customName;
-    link.style.display = 'none';
-    
-    document.body.appendChild(link);
-    link.click();
-    
-    setTimeout(() => {
-        document.body.removeChild(link);
-    }, 100);
-}
-
-// دالة تتبع التحميلات
-function trackDownload(fileName) {
-    console.log('Downloaded:', fileName);
-    console.log('Time:', new Date().toLocaleString());
-    
-    if (typeof gtag !== 'undefined') {
-        gtag('event', 'download', {
-            'event_category': 'PDF',
-            'event_label': fileName
-        });
-    }
-    
-    if (typeof fbq !== 'undefined') {
-        fbq('track', 'Lead', {
-            content_name: fileName
-        });
-    }
-}
-
-// دالة الإشعار
-function showDownloadMessage(fileName) {
-    if (!document.querySelector('#download-styles')) {
-        const style = document.createElement('style');
-        style.id = 'download-styles';
-        style.textContent = `
-            @keyframes slideInDownload {
-                from { transform: translateX(100%); opacity: 0; }
-                to { transform: translateX(0); opacity: 1; }
-            }
-            @keyframes slideOutDownload {
-                from { transform: translateX(0); opacity: 1; }
-                to { transform: translateX(100%); opacity: 0; }
-            }
-            .download-notification { animation: slideInDownload 0.3s ease forwards; }
-            .download-notification.hiding { animation: slideOutDownload 0.3s ease forwards; }
-        `;
-        document.head.appendChild(style);
-    }
-    
-    const oldNotifications = document.querySelectorAll('.download-notification');
-    oldNotifications.forEach(notification => notification.remove());
-    
-    const notification = document.createElement('div');
-    notification.className = 'download-notification';
-    notification.innerHTML = `
-        <div style="display:flex;align-items:center;gap:12px;">
-            <span style="font-size:24px;">📥</span>
-            <div>
-                <strong style="display:block;margin-bottom:4px;">Downloading...</strong>
-                <span style="font-size:14px;opacity:0.9;">${customNameFromPath(fileName)}</span>
-            </div>
-        </div>
-    `;
-    
-    notification.style.cssText = `
-        position: fixed;
-        bottom: 25px;
-        right: 25px;
-        background: white;
-        color: #333;
-        padding: 18px 22px;
-        border-radius: 12px;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        z-index: 9999;
-        border-left: 5px solid #9D7BEF;
-        font-family: 'Inter', sans-serif;
-        max-width: 320px;
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255,255,255,0.2);
-    `;
-    
-    document.body.appendChild(notification);
-    
-    const closeBtn = document.createElement('button');
-    closeBtn.innerHTML = '✕';
-    closeBtn.style.cssText = `
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        background: none;
-        border: none;
-        color: #999;
-        font-size: 16px;
-        cursor: pointer;
-        width: 24px;
-        height: 24px;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        border-radius:50%;
-    `;
-    closeBtn.addEventListener('click', () => {
-        notification.classList.add('hiding');
-        setTimeout(() => notification.remove(), 300);
-    });
-    notification.appendChild(closeBtn);
-
-    setTimeout(() => {
-        if (notification.parentNode) {
-            notification.classList.add('hiding');
-            setTimeout(() => notification.remove(), 300);
-        }
-    }, 4000);
-}
-
-// استخراج اسم الملف بدون المسار والامتداد
-function customNameFromPath(path) {
-    return path.split('/').pop().replace('.zip', '');
-}
-
-// تحميل الزر
-document.addEventListener('click', function(e) {
-    if (e.target.classList.contains('download-btn')) {
-        const button = e.target;
-        const originalText = button.innerHTML;
-
-        button.innerHTML = '⏳ Preparing download...';
-        button.style.opacity = '0.8';
-        button.style.cursor = 'wait';
-        
-        setTimeout(() => {
-            button.innerHTML = originalText;
-            button.style.opacity = '1';
-            button.style.cursor = 'pointer';
-        }, 2000);
     }
 });
