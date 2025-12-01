@@ -21,7 +21,7 @@ Anti-colic bottles use vents or internal valves to reduce how much air your baby
 
 ---
 
-## 1. Dr. Brown’s Options+ Anti-Colic
+## 1) Dr. Brown’s Options+ Anti-Colic
 
 🔗 **Affiliate Link:**  
 https://amzn.to/3XaxPBv
@@ -36,7 +36,7 @@ Several parts → requires more cleaning time.
 
 ---
 
-## 2. Philips Avent Anti-Colic with AirFree Vent
+## 2) Philips Avent Anti-Colic with AirFree Vent
 
 🔗 **Affiliate Link:**  
 https://amzn.to/4oXoNUP
@@ -51,7 +51,7 @@ Flow nipple can feel slow for some babies.
 
 ---
 
-## 3. MAM Easy Start Anti-Colic
+## 3) MAM Easy Start Anti-Colic
 
 🔗 **Affiliate Link:**  
 https://amzn.to/43G2hau
@@ -66,7 +66,7 @@ Works best with the slow-flow nipple first.
 
 ---
 
-## 4. Comotomo Baby Bottle (Yes → it is anti-colic)
+## 4) Comotomo Baby Bottle (Yes → it is anti-colic)
 
 📌 **Checked:**  
 Comotomo does NOT use the term “anti-colic” as a headline,  
@@ -88,7 +88,7 @@ Higher price than others.
 
 ---
 
-## 5. Tommee Tippee Advanced Anti-Colic
+## 5) Tommee Tippee Advanced Anti-Colic
 
 🔗 **Affiliate Link:**  
 https://amzn.to/4odQfMO
