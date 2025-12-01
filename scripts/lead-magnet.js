@@ -24,13 +24,11 @@ document.getElementById("subscribe-form").addEventListener("submit", function(e)
 
 // كود صفحة الشكر - تحميل الملفات
 document.addEventListener('DOMContentLoaded', function() {
-    // فقط في صفحة الشكر (تحتوي على أزرار التحميل)
     if (document.querySelector('.download-btn')) {
         document.querySelectorAll('.download-btn').forEach(button => {
             button.addEventListener('click', function(e) {
                 e.preventDefault();
                 
-                // تحديد أي ملف سيتم تنزيله بناءً على نص الزر
                 let fileName;
                 let customFileName;
                 
@@ -46,13 +44,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 
                 if (fileName) {
-                    // إصلاح: إضافة رأس Content-Disposition عبر fetch
                     forceDownload(fileName, customFileName);
-                    
-                    // تتبع التنزيل
                     trackDownload(customFileName);
-                    
-                    // إظهار رسالة تأكيد
                     showDownloadMessage(customFileName);
                 }
             });
@@ -60,53 +53,59 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// دالة جديدة لإجبار التحميل بدلاً من العرض
+// ⭐⭐⭐ التعديلات هنا (الدالة الجديدة فقط) ⭐⭐⭐
 function forceDownload(filePath, customName) {
-    // الحل الأفضل: استخدام fetch + blob
     fetch(filePath)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.blob();
-        })
+        .then(response => response.blob())
         .then(blob => {
-            // إنشاء رابط للتنزيل
-            const url = window.URL.createObjectURL(blob);
+            const blobUrl = window.URL.createObjectURL(blob);
+
+            // كشف أجهزة iPhone / iPad
+            const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+            if (isIOS) {
+                // iOS لا يدعم download — تحويل blob إلى Base64
+                const reader = new FileReader();
+                reader.onload = function() {
+                    const link = document.createElement('a');
+                    link.href = reader.result;
+                    link.download = customName;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                };
+                reader.readAsDataURL(blob);
+                return;
+            }
+
+            // باقي الأجهزة (Android + Desktop)
             const link = document.createElement('a');
-            
-            // إعداد الرابط للتنزيل
-            link.href = url;
-            link.download = customName; // هذا يجبر المتصفح على التنزيل
+            link.href = blobUrl;
+            link.download = customName;
             link.style.display = 'none';
-            
-            // إضافة الرابط والنقر عليه
+
             document.body.appendChild(link);
             link.click();
-            
-            // تنظيف بعد التنزيل
+
             setTimeout(() => {
+                window.URL.revokeObjectURL(blobUrl);
                 document.body.removeChild(link);
-                window.URL.revokeObjectURL(url);
             }, 100);
         })
         .catch(error => {
             console.error('Download error:', error);
-            // إذا فشل fetch، نستخدم الطريقة التقليدية
             fallbackDownload(filePath, customName);
         });
 }
 
-// طريقة بديلة إذا فشلت الطريقة الأولى
+// fallback — فقط إزالة فتح نافذة جديدة
 function fallbackDownload(filePath, customName) {
-    // إنشاء رابط عادي مع إضافة timestamp لمنع الكاش
     const timestamp = new Date().getTime();
     const link = document.createElement('a');
-    
-    // إضافة بارامتر لمنع الكاش
+
     link.href = `${filePath}?t=${timestamp}`;
     link.download = customName;
-    link.target = '_blank';
+    // ❌ تمت إزالة link.target = "_blank" لأنه يفتح PDF بدل تحميله
     link.style.display = 'none';
     
     document.body.appendChild(link);
@@ -117,12 +116,11 @@ function fallbackDownload(filePath, customName) {
     }, 100);
 }
 
-// دالة لتتبع التحميلات
+// دالة تتبع التحميلات
 function trackDownload(fileName) {
     console.log('Downloaded:', fileName);
     console.log('Time:', new Date().toLocaleString());
     
-    // تتبع Google Analytics
     if (typeof gtag !== 'undefined') {
         gtag('event', 'download', {
             'event_category': 'PDF',
@@ -130,7 +128,6 @@ function trackDownload(fileName) {
         });
     }
     
-    // تتبع Facebook Pixel
     if (typeof fbq !== 'undefined') {
         fbq('track', 'Lead', {
             content_name: fileName
@@ -138,67 +135,41 @@ function trackDownload(fileName) {
     }
 }
 
-// دالة لعرض رسالة تأكيد
+// دالة الإشعار
 function showDownloadMessage(fileName) {
-    // إضافة الأنيميشن إذا لم تكن موجودة
     if (!document.querySelector('#download-styles')) {
         const style = document.createElement('style');
         style.id = 'download-styles';
         style.textContent = `
             @keyframes slideInDownload {
-                from {
-                    transform: translateX(100%);
-                    opacity: 0;
-                }
-                to {
-                    transform: translateX(0);
-                    opacity: 1;
-                }
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
             }
             @keyframes slideOutDownload {
-                from {
-                    transform: translateX(0);
-                    opacity: 1;
-                }
-                to {
-                    transform: translateX(100%);
-                    opacity: 0;
-                }
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
             }
-            .download-notification {
-                animation: slideInDownload 0.3s ease forwards;
-            }
-            .download-notification.hiding {
-                animation: slideOutDownload 0.3s ease forwards;
-            }
+            .download-notification { animation: slideInDownload 0.3s ease forwards; }
+            .download-notification.hiding { animation: slideOutDownload 0.3s ease forwards; }
         `;
         document.head.appendChild(style);
     }
     
-    // إزالة أي إشعارات سابقة
     const oldNotifications = document.querySelectorAll('.download-notification');
-    oldNotifications.forEach(notification => {
-        notification.remove();
-    });
+    oldNotifications.forEach(notification => notification.remove());
     
-    // إنشاء الإشعار الجديد
     const notification = document.createElement('div');
     notification.className = 'download-notification';
     notification.innerHTML = `
-        <div style="
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        ">
-            <span style="font-size: 24px;">📥</span>
+        <div style="display:flex;align-items:center;gap:12px;">
+            <span style="font-size:24px;">📥</span>
             <div>
-                <strong style="display: block; margin-bottom: 4px;">Downloading...</strong>
-                <span style="font-size: 14px; opacity: 0.9;">${fileName.replace('.pdf', '')}</span>
+                <strong style="display:block;margin-bottom:4px;">Downloading...</strong>
+                <span style="font-size:14px;opacity:0.9;">${fileName.replace('.pdf', '')}</span>
             </div>
         </div>
     `;
     
-    // إضافة الأنماط
     notification.style.cssText = `
         position: fixed;
         bottom: 25px;
@@ -216,10 +187,8 @@ function showDownloadMessage(fileName) {
         border: 1px solid rgba(255,255,255,0.2);
     `;
     
-    // إضافة الإشعار إلى الصفحة
     document.body.appendChild(notification);
     
-    // إضافة زر إغلاق
     const closeBtn = document.createElement('button');
     closeBtn.innerHTML = '✕';
     closeBtn.style.cssText = `
@@ -231,45 +200,37 @@ function showDownloadMessage(fileName) {
         color: #999;
         font-size: 16px;
         cursor: pointer;
-        padding: 0;
         width: 24px;
         height: 24px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        border-radius:50%;
     `;
     closeBtn.addEventListener('click', () => {
         notification.classList.add('hiding');
         setTimeout(() => notification.remove(), 300);
     });
     notification.appendChild(closeBtn);
-    
-    // إزالة الإشعار تلقائياً بعد 4 ثوان
+
     setTimeout(() => {
         if (notification.parentNode) {
             notification.classList.add('hiding');
-            setTimeout(() => {
-                if (notification.parentNode) {
-                    notification.remove();
-                }
-            }, 300);
+            setTimeout(() => notification.remove(), 300);
         }
     }, 4000);
 }
 
-// إضافة مؤشر تحميل على الأزرار
+// تحميل الزر
 document.addEventListener('click', function(e) {
     if (e.target.classList.contains('download-btn')) {
         const button = e.target;
         const originalText = button.innerHTML;
-        
-        // تغيير نص الزر مؤقتاً
+
         button.innerHTML = '⏳ Preparing download...';
         button.style.opacity = '0.8';
         button.style.cursor = 'wait';
         
-        // استعادة الزر بعد 2 ثانية
         setTimeout(() => {
             button.innerHTML = originalText;
             button.style.opacity = '1';
