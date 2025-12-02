@@ -16,7 +16,7 @@ const reports = [
   
   {
     name: "why-baby-cries",
-    title: "7 Hidden Reasons Your Baby Cries",
+    title: "Hidden Reasons Your Baby Cries",
     cover: "images/why-baby-cries.jpg",
     description: "Discover 7 uncommon reasons your baby cries and how to soothe them"
   },
