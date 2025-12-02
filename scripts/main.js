@@ -196,20 +196,8 @@ class ComponentLoader {
 
 // ===== تهيئة التطبيق =====
 document.addEventListener('DOMContentLoaded', function() {
-    // تأخير بسيط لضمان تحميل DOM بالكامل
-    setTimeout(() => {
-        new ComponentLoader();
-    }, 100);
+    new ComponentLoader();  // ← الإصلاح الوحيد هنا
 });
-
-// دعم الوضع غير المتزامن
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        new ComponentLoader();
-    });
-} else {
-    new ComponentLoader();
-}
 
 // ===== وظائف مساعدة عالمية =====
 window.App = {
