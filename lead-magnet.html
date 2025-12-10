@@ -35,16 +35,6 @@
                    id="mc-embedded-subscribe">
         </form>
 
-        <!-- رسالة التحميل (ستظهر بعد الاشتراك) -->
-        <div id="success-message" style="display: none; margin-top: 20px; padding: 20px; background: #d4edda; border-radius: 10px;">
-            <h3 style="color: #155724;">✅ Success! Your download is ready</h3>
-            <p>Check your email for the download link, or:</p>
-            <a href="/downloads/newborn-guide.pdf" download 
-               style="display: inline-block; padding: 12px 24px; background: #28a745; color: white; text-decoration: none; border-radius: 5px; margin-top: 10px;">
-               ⬇️ Download Now
-            </a>
-        </div>
-
         <p class="reassurance">Safe & private — no spam ever.</p>
         <div class="footer">© 2025 Bloom & Cuddle</div>
     </div>
@@ -53,7 +43,6 @@
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('subscribe-form');
             const emailInput = document.getElementById('mce-EMAIL');
-            const successMessage = document.getElementById('success-message');
             
             form.addEventListener('submit', async function(e) {
                 e.preventDefault();
@@ -74,28 +63,29 @@
                 submitBtn.disabled = true;
                 
                 try {
-                    // إرسال لـ MailerLite
-                    if (typeof ml !== 'undefined') {
-                        ml('webform', '5Spc2L', 'submit', { 
-                            email: email
-                        });
-                        
-                        // الانتظار قليلاً ثم التوجيه
-                        await new Promise(resolve => setTimeout(resolve, 1000));
-                        
-                        // ========== الخيار 1: عرض رسالة نجاح في نفس الصفحة ==========
-                        form.style.display = 'none';
-                        successMessage.style.display = 'block';
-                        
-                        // تتبع التحويل
-                        trackConversion();
-                        
-                        // ========== الخيار 2: التوجيه لصفحة شكر منفصلة ==========
-                        // window.location.href = '/thank-you.html';
-                        
-                    } else {
-                        throw new Error('MailerLite not loaded');
-                    }
+                    // ========== الطريقة المضمونة: استخدام Form Submission ==========
+                    // إنشاء نموذج خفي لـ MailerLite
+                    const hiddenForm = document.createElement('form');
+                    hiddenForm.style.display = 'none';
+                    hiddenForm.method = 'POST';
+                    hiddenForm.action = `https://app.mailerlite.com/webforms/submit/${'5Spc2L'}`;
+                    
+                    // إضافة حقول النموذج
+                    const emailField = document.createElement('input');
+                    emailField.type = 'hidden';
+                    emailField.name = 'fields[email]';
+                    emailField.value = email;
+                    
+                    hiddenForm.appendChild(emailField);
+                    document.body.appendChild(hiddenForm);
+                    
+                    // إرسال النموذج
+                    hiddenForm.submit();
+                    
+                    // الانتقال لصفحة الشكر بعد 500ms (لضمان إرسال البيانات أولاً)
+                    setTimeout(function() {
+                        window.location.href = 'thankpage.html';
+                    }, 500);
                     
                 } catch (error) {
                     console.error('Error:', error);
@@ -111,20 +101,6 @@
             function isValidEmail(email) {
                 const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 return re.test(email);
-            }
-            
-            // تتبع التحويل
-            function trackConversion() {
-                // لفيسبوك بكسل
-                if (typeof fbq !== 'undefined') {
-                    fbq('track', 'Lead');
-                }
-                // لجوجل أناليتكس
-                if (typeof gtag !== 'undefined') {
-                    gtag('event', 'conversion', {
-                        'send_to': 'AW-XXXXXXXXX/YYYYYYYYY'
-                    });
-                }
             }
         });
     </script>
