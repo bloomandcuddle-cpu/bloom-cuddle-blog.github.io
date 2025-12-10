@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/lead-magnet.css">
     
-    <!-- MailerLite Universal -->
+    <!-- MailerLite Universal Code -->
     <script>
         (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=[w[f].q||[]])
         .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
@@ -15,7 +15,6 @@
         (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
         ml('account', '1975140');
     </script>
-    <!-- End MailerLite Universal -->
 </head>
 
 <body>
@@ -27,82 +26,24 @@
         </p>
         <p class="us-note">This resource is mainly created for U.S.-based moms</p>
 
-        <!-- النموذج -->
+        <!-- نموذج الاشتراك -->
         <form id="subscribe-form">
-            <input type="email" name="EMAIL" id="mce-EMAIL" required 
+            <input type="email" id="user-email" required 
                    placeholder="Enter your email address">
             <input type="submit" value="👉 Send Me My Free Resource" 
-                   id="mc-embedded-subscribe">
+                   id="submit-btn">
         </form>
+
+        <!-- MailerLite Form (مخفي) -->
+        <div style="display: none;">
+            <div class="ml-embedded" data-form="5Spc2L"></div>
+        </div>
 
         <p class="reassurance">Safe & private — no spam ever.</p>
         <div class="footer">© 2025 Bloom & Cuddle</div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('subscribe-form');
-            const emailInput = document.getElementById('mce-EMAIL');
-            
-            form.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                
-                const email = emailInput.value.trim();
-                
-                // التحقق من صحة الإيميل
-                if (!email || !isValidEmail(email)) {
-                    alert('Please enter a valid email address.');
-                    emailInput.focus();
-                    return;
-                }
-                
-                // تعطيل الزر لمنع الضغط المتعدد
-                const submitBtn = document.getElementById('mc-embedded-subscribe');
-                const originalText = submitBtn.value;
-                submitBtn.value = 'Sending...';
-                submitBtn.disabled = true;
-                
-                try {
-                    // ========== الطريقة المضمونة: استخدام Form Submission ==========
-                    // إنشاء نموذج خفي لـ MailerLite
-                    const hiddenForm = document.createElement('form');
-                    hiddenForm.style.display = 'none';
-                    hiddenForm.method = 'POST';
-                    hiddenForm.action = `https://app.mailerlite.com/webforms/submit/${'5Spc2L'}`;
-                    
-                    // إضافة حقول النموذج
-                    const emailField = document.createElement('input');
-                    emailField.type = 'hidden';
-                    emailField.name = 'fields[email]';
-                    emailField.value = email;
-                    
-                    hiddenForm.appendChild(emailField);
-                    document.body.appendChild(hiddenForm);
-                    
-                    // إرسال النموذج
-                    hiddenForm.submit();
-                    
-                    // الانتقال لصفحة الشكر بعد 500ms (لضمان إرسال البيانات أولاً)
-                    setTimeout(function() {
-                        window.location.href = 'thankpage.html';
-                    }, 500);
-                    
-                } catch (error) {
-                    console.error('Error:', error);
-                    alert('Something went wrong. Please try again.');
-                    
-                    // إعادة تفعيل الزر
-                    submitBtn.value = originalText;
-                    submitBtn.disabled = false;
-                }
-            });
-            
-            // دالة التحقق من الإيميل
-            function isValidEmail(email) {
-                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                return re.test(email);
-            }
-        });
-    </script>
+    <!-- تحميل ملف JavaScript -->
+    <script src="scripts/lead-magnet.js"></script>
 </body>
 </html>
