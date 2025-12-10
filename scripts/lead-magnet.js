@@ -4,7 +4,7 @@
  * يحافظ على التصميم الأصلي
  */
 
-// تهيئة عند تحميل الصفحة
+// تهيئة عند  تحميل الصفحة
 document.addEventListener('DOMContentLoaded', function() {
     initLeadMagnetForm();
 });
