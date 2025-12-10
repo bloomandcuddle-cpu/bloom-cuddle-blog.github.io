@@ -1,6 +1,7 @@
 /**
  * Bloom & Cuddle - Lead Magnet Form Handler
  * MailerLite Integration
+ * يحافظ على التصميم الأصلي
  */
 
 // تهيئة عند تحميل الصفحة
@@ -8,35 +9,29 @@ document.addEventListener('DOMContentLoaded', function() {
     initLeadMagnetForm();
 });
 
-/**
- * تهيئة نموذج الاشتراك
- */
 function initLeadMagnetForm() {
     const form = document.getElementById('subscribe-form');
-    const emailInput = document.getElementById('user-email');
-    const submitBtn = document.getElementById('submit-btn');
     
-    if (!form || !emailInput) {
-        console.error('Form elements not found');
+    if (!form) {
+        console.error('Form not found');
         return;
     }
     
+    // استخدام الـ IDs الأصلية
+    const emailInput = document.getElementById('mce-EMAIL');
+    const submitBtn = document.getElementById('mc-embedded-subscribe');
+    
     form.addEventListener('submit', handleFormSubmit);
     
-    // تحسين تجربة المستخدم
-    emailInput.addEventListener('input', function() {
-        this.style.borderColor = '#ddd';
-    });
+    // إضافة CSS بسيط لإصلاح أي مشاكل
+    fixCSSIssues();
 }
 
-/**
- * معالجة إرسال النموذج
- */
 function handleFormSubmit(e) {
     e.preventDefault();
     
-    const emailInput = document.getElementById('user-email');
-    const submitBtn = document.getElementById('submit-btn');
+    const emailInput = document.getElementById('mce-EMAIL');
+    const submitBtn = document.getElementById('mc-embedded-subscribe');
     const email = emailInput.value.trim();
     
     // التحقق من الإيميل
@@ -45,127 +40,92 @@ function handleFormSubmit(e) {
         return;
     }
     
-    // تعطيل الزر أثناء الإرسال
-    disableSubmitButton(submitBtn);
+    // حفظ النص الأصلي للزر
+    const originalBtnText = submitBtn.value;
     
-    // إرسال البيانات لـ MailerLite
-    submitToMailerLite(email)
-        .then(() => {
-            // الانتقال لصفحة الشكر
-            redirectToThankYouPage();
-        })
-        .catch(error => {
-            console.error('Submission error:', error);
-            showError('Something went wrong. Please try again.', emailInput);
-            enableSubmitButton(submitBtn);
-        });
+    // تعطيل الزر مؤقتاً
+    submitBtn.disabled = true;
+    submitBtn.value = 'Sending...';
+    
+    // إرسال لـ MailerLite
+    try {
+        if (typeof ml !== 'undefined') {
+            ml('webform', '5Spc2L', 'submit', { 
+                email: email
+            });
+            
+            // الانتظار قليلاً ثم الانتقال
+            setTimeout(function() {
+                window.location.href = 'thankpage.html';
+            }, 300);
+            
+        } else {
+            throw new Error('MailerLite not loaded');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        
+        // إعادة تفعيل الزر
+        submitBtn.disabled = false;
+        submitBtn.value = originalBtnText;
+        
+        alert('Something went wrong. Please try again.');
+    }
 }
 
-/**
- * التحقق من صحة الإيميل
- */
 function validateEmail(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
 }
 
-/**
- * إرسال البيانات لـ MailerLite
- */
-function submitToMailerLite(email) {
-    return new Promise((resolve, reject) => {
-        if (typeof ml === 'undefined') {
-            reject(new Error('MailerLite not loaded'));
-            return;
-        }
-        
-        try {
-            // إرسال البيانات للنموذج المخفي
-            ml('webform', '5Spc2L', 'submit', { 
-                email: email,
-                // يمكن إضافة حقول إضافية هنا
-                // name: document.getElementById('name')?.value,
-                // resubscribe: true
-            });
-            
-            // تأخير لحفظ البيانات أولاً
-            setTimeout(() => {
-                resolve();
-            }, 300);
-            
-        } catch (error) {
-            reject(error);
-        }
-    });
-}
-
-/**
- * التوجيه لصفحة الشكر
- */
-function redirectToThankYouPage() {
-    // الانتقال لصفحة الشكر
-    window.location.href = 'thankpage.html';
-    
-    // بديل: فتح في نافذة جديدة
-    // window.open('thankpage.html', '_blank');
-}
-
-/**
- * تعطيل زر الإرسال
- */
-function disableSubmitButton(button) {
-    button.disabled = true;
-    button.value = 'Sending...';
-    button.style.opacity = '0.7';
-    button.style.cursor = 'not-allowed';
-}
-
-/**
- * تفعيل زر الإرسال
- */
-function enableSubmitButton(button) {
-    button.disabled = false;
-    button.value = '👉 Send Me My Free Resource';
-    button.style.opacity = '1';
-    button.style.cursor = 'pointer';
-}
-
-/**
- * عرض رسالة خطأ
- */
 function showError(message, inputElement) {
-    alert(message); // يمكن استبدالها بعرض رسالة في الصفحة
+    // طريقة بسيطة لعرض الخطأ
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'form-error';
+    errorDiv.innerHTML = `<span style="color: #ff4757; font-size: 14px;">${message}</span>`;
+    errorDiv.style.marginTop = '10px';
     
-    if (inputElement) {
-        inputElement.style.borderColor = '#ff4757';
-        inputElement.focus();
-        
-        // إزالة اللون بعد 3 ثواني
-        setTimeout(() => {
-            inputElement.style.borderColor = '#ddd';
-        }, 3000);
-    }
+    // إضافة بعد النموذج
+    const form = document.getElementById('subscribe-form');
+    form.parentNode.insertBefore(errorDiv, form.nextSibling);
+    
+    // إزالة بعد 5 ثواني
+    setTimeout(() => {
+        errorDiv.remove();
+    }, 5000);
 }
 
-/**
- * تتبع التحويل (اختياري)
- */
-function trackConversion(eventName = 'lead_form_submit') {
-    // Google Analytics
-    if (typeof gtag !== 'undefined') {
-        gtag('event', eventName);
-    }
-    
-    // Facebook Pixel
-    if (typeof fbq !== 'undefined') {
-        fbq('track', eventName);
-    }
-    
-    // Google Tag Manager
-    if (typeof dataLayer !== 'undefined') {
-        dataLayer.push({
-            'event': eventName,
-            'form_type': 'lead_magnet'
-        });
-    }
+function fixCSSIssues() {
+    // إصلاح أي مشاكل CSS قد تظهر
+    const style = document.createElement('style');
+    style.textContent = `
+        /* إصلاحات عامة */
+        #subscribe-form {
+            position: relative !important;
+            z-index: 1 !important;
+        }
+        
+        /* تأكد أن النموذج المخفي لا يؤثر على التصميم */
+        .ml-embedded {
+            display: none !important;
+        }
+        
+        /* الحفاظ على تصميم المدخلات */
+        #mce-EMAIL, #mc-embedded-subscribe {
+            position: relative !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            transform: none !important;
+        }
+        
+        /* منع أي تأثير من JavaScript */
+        .ml-form-embedContainer,
+        .ml-form-embedWrapper {
+            display: none !important;
+            height: 0 !important;
+            width: 0 !important;
+            overflow: hidden !important;
+        }
+    `;
+    document.head.appendChild(style);
 }
