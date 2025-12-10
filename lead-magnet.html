@@ -6,6 +6,16 @@
     <title>Get Your Free Newborn Resource - Bloom & Cuddle</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/lead-magnet.css">
+    
+    <!-- ========== MailerLite Universal Code ========== -->
+    <script>
+        (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=[w[f].q||[]])
+        .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+        n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+        (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+        ml('account', '1975140');
+    </script>
+    <!-- ========== End MailerLite ========== -->
 </head>
 
 <body>
@@ -17,15 +27,106 @@
         </p>
         <p class="us-note">This resource is mainly created for U.S.-based moms</p>
 
+        <!-- ========== Updated Form for MailerLite ========== -->
         <form id="subscribe-form">
-            <input type="email" name="EMAIL" id="mce-EMAIL" required placeholder="Enter your email address">
-            <input type="submit" value="👉 Send Me My Free Resource" id="mc-embedded-subscribe">
+            <input type="email" name="EMAIL" id="mce-EMAIL" required 
+                   placeholder="Enter your email address">
+            <input type="submit" value="👉 Send Me My Free Resource" 
+                   id="mc-embedded-subscribe">
         </form>
+        <!-- ========== Hidden MailerLite Form ========== -->
+        <div style="display: none;">
+            <div class="ml-embedded" data-form="5Spc2L"></div>
+        </div>
 
         <p class="reassurance">Safe & private — no spam ever.</p>
         <div class="footer">© 2025 Bloom & Cuddle</div>
     </div>
 
-    <script src="scripts/lead-magnet.js"></script>
+    <!-- ========== Updated JavaScript for MailerLite ========== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('subscribe-form');
+            const emailInput = document.getElementById('mce-EMAIL');
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const email = emailInput.value.trim();
+                
+                // التحقق من صحة الإيميل
+                if (!email || !isValidEmail(email)) {
+                    alert('Please enter a valid email address.');
+                    return;
+                }
+                
+                // إرسال لـ MailerLite
+                if (typeof ml !== 'undefined') {
+                    ml('webform', '5Spc2L', 'submit', { 
+                        email: email,
+                        // يمكن إضافة حقول إضافية هنا إذا كنت تجمعينها
+                        // name: document.getElementById('name-field')?.value
+                    });
+                    
+                    // رسالة النجاح
+                    showSuccessMessage();
+                    
+                    // إعادة تعيين الحقل
+                    emailInput.value = '';
+                    
+                    // تتبع التحويل (اختياري)
+                    trackConversion();
+                    
+                } else {
+                    alert('Please wait a moment and try again.');
+                }
+            });
+            
+            // دالة التحقق من الإيميل
+            function isValidEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(email);
+            }
+            
+            // دالة عرض رسالة النجاح
+            function showSuccessMessage() {
+                // يمكنك تغيير هذا حسب تفضيلك
+                alert('✅ Success! Check your email for the download link.');
+                
+                // أو عرض رسالة على الصفحة نفسها:
+                /*
+                const successMsg = document.createElement('div');
+                successMsg.innerHTML = `
+                    <div style="background: #d4edda; color: #155724; padding: 15px; 
+                                border-radius: 5px; margin: 20px 0;">
+                        ✅ Success! Check your email for the download link.
+                    </div>
+                `;
+                form.parentNode.insertBefore(successMsg, form.nextSibling);
+                */
+            }
+            
+            // تتبع التحويل (اختياري)
+            function trackConversion() {
+                // لفيسبوك بكسل
+                if (typeof fbq !== 'undefined') {
+                    fbq('track', 'Lead');
+                }
+                
+                // لجوجل أناليتكس
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'conversion', {
+                        'send_to': 'AW-XXXXXXXXX/YYYYYYYYY'
+                    });
+                }
+                
+                // لجوجل تاغ مانيجر
+                if (typeof dataLayer !== 'undefined') {
+                    dataLayer.push({'event': 'form_submit'});
+                }
+            }
+        });
+    </script>
+    <!-- ========== End MailerLite Integration ========== -->
 </body>
 </html>
