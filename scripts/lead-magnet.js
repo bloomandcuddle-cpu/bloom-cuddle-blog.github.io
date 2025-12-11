@@ -1,87 +1,53 @@
-/**
- * Bloom & Cuddle - Lead Magnet Form Handler
- * تأكد أن هذا الملف موجود في: scripts/lead-magnet.js
- */
+:// كود صفحة الهبوط - نموذج الاشتراك
+document.getElementById("subscribe-form").addEventListener("submit", function(e) {
+    e.preventDefault();
 
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('✅ Page loaded, initializing form...');
-    
-    const form = document.getElementById('subscribe-form');
-    if (!form) {
-        console.error('❌ Form not found!');
-        return;
-    }
-    
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
-        console.log('🔄 Form submitted');
-        
-        const emailInput = document.getElementById('mce-EMAIL');
-        const submitBtn = document.getElementById('mc-embedded-subscribe');
-        const email = emailInput.value.trim();
-        
-        // التحقق من الإيميل
-        if (!email || !email.includes('@') || !email.includes('.')) {
-            alert('Please enter a valid email address.');
-            return;
-        }
-        
-        // تعطيل الزر
-        submitBtn.disabled = true;
-        submitBtn.value = 'Sending...';
-        
-        // ====== الأهم: إرسال لـ MailerLite ======
-        console.log('📤 Sending to MailerLite:', email);
-        
-        if (typeof ml !== 'undefined') {
-            console.log('✅ ml is available');
-            
-            try {
-                // الطريقة المباشرة
-                ml('webform', '5Spc2L', 'submit', { 
-                    email: email 
-                });
-                
-                console.log('✅ MailerLite submission successful');
-                
-            } catch (error) {
-                console.error('❌ MailerLite error:', error);
-                
-                // طريقة بديلة
-                try {
-                    ml('form', '5Spc2L', 'submit', { email: email });
-                } catch (e) {
-                    console.error('❌ Alternative method also failed:', e);
-                }
-            }
+    const email = document.getElementById("mce-EMAIL").value;
+
+    // Mailchimp JSONP endpoint
+    const url =
+      "https://gmail.us2.list-manage.com/subscribe/post-json?u=3fb474bb32938e63a769bb905&id=e02877e9b6&c=callback";
+
+    // JSONP callback
+    window.callback = function(response) {
+        if (response.result === "success") {
+            window.location.href = "thankpage.html";
         } else {
-            console.error('❌ ml is NOT defined! Check MailerLite script.');
+            alert("Please enter a valid email.");
         }
-        
-        // ====== الانتقال لصفحة الشكر ======
-        setTimeout(function() {
-            console.log('➡️ Redirecting to thank you page...');
-            window.location.href = 'thankpage.html';
-        }, 1500); // تأخير 1.5 ثانية
-        
-    });
-    
-    console.log('✅ Form initialized successfully');
+    };
+
+    const script = document.createElement("script");
+    script.src = `${url}&EMAIL=${encodeURIComponent(email)}`;
+    document.body.appendChild(script);
 });
 
-// دالة مساعدة للتحقق
-function checkMailerLite() {
-    console.log('🔍 Checking MailerLite...');
-    console.log('ml exists?', typeof ml !== 'undefined');
-    console.log('ml type:', typeof ml);
-    
-    // اختبار بسيط
-    if (typeof ml === 'function') {
-        console.log('✅ ml is a function, ready to use');
-    } else {
-        console.error('❌ ml is not a function!');
+// كود صفحة الشكر -  تحميل الملفات
+document.addEventListener('DOMContentLoaded', function() {
+    // فقط في صفحة الشكر (تحتوي على أزرار التحميل)
+    if (document.querySelector('.download-btn')) {
+        document.querySelectorAll('.download-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // الحصول على رابط التحميل الحقيقي (يمكن استبدال # بالروابط الفعلية)
+                const downloadUrl = this.getAttribute('href');
+                
+                if (downloadUrl && downloadUrl !== '#') {
+                    // بدء التحميل الفعلي
+                    window.location.href = downloadUrl;
+                } else {
+                    // عرض رسالة للمستخدم
+                    alert('Your download will start now!');
+                    
+                    // هنا يمكن إضافة روابط التحميل الفعلية
+                    // مثال:
+                    // const fileName = this.textContent.includes('Gas & Reflux') 
+                    //     ? 'gas-reflux-cheatsheet.pdf' 
+                    //     : 'newborn-checklist.pdf';
+                    // window.location.href = `downloads/${fileName}`;
+                }
+            });
+        });
     }
-}
-
-// تشغيل التحقق عند التحميل
-window.addEventListener('load', checkMailerLite);
+});   
